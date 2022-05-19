@@ -24,24 +24,24 @@ import ImageBlock from './ImageBlock';
 
 const Components: any = {
     teaser: Teaser,
-    grid: Grid,
-    tileImage: TileImageBlock,
+    // grid: Grid,
+    // tileImage: TileImageBlock,
     page: Page,
-    space: Space,
-    headline: HeadlineBlock,
-    tile: TileBlock,
-    socialMedia: SocialMediaBlock,
-    contactTile: ContactTileBlock,
-    global: Global,
-    columns4: Columns4Block,
-    logo: LogoBlock,
-    text: TextBlock,
-    links: LinksBlock,
-    link: LinkBlock,
-    imageLink: ImageLinkBlock,
-    columns: ColumnsBlock,
-    imageButton: ImageButtonBlock,
-    image: ImageBlock
+    // space: Space,
+    // headline: HeadlineBlock,
+    // tile: TileBlock,
+    // socialMedia: SocialMediaBlock,
+    // contactTile: ContactTileBlock,
+    // global: Global,
+    // columns4: Columns4Block,
+    // logo: LogoBlock,
+    // text: TextBlock,
+    // links: LinksBlock,
+    // link: LinkBlock,
+    // imageLink: ImageLinkBlock,
+    // columns: ColumnsBlock,
+    // imageButton: ImageButtonBlock,
+    // image: ImageBlock
 };
 
 export interface DefaultBlok {

@@ -4,9 +4,11 @@ import { Blok } from './DynamicComponent';
 import styled from 'styled-components';
 
 const Teaser: FunctionComponent<Blok> = ({ blok }) => {
+    console.log("teaser ", blok)
     return (
         <TeaserWrapper {...sbEditable(blok)} key={blok._uid}>
-            {blok.image && <StageImage src={blok.image.filename} alt={blok.image.alt} />}
+            {/* {blok.image && <StageImage src={blok.image.filename} alt={blok.image.alt} />} */}
+            {blok.headline}
         </TeaserWrapper>
     );
 };

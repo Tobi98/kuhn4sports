@@ -1,26 +1,42 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Menu, { MenuProps } from './Menu';
-import LogoSVG from '../assets/logo.svg';
 import Link from 'next/link';
+import Image from 'next/image';
+import Logo from '../assets/logo_header.png';
 
-interface Props {
-    menuState: (state: boolean) => void;
-    menuOpen: boolean;
+export interface MenuProps {
+    url: string;
+    name: string;
+    position: number;
 }
 
-const Header: FunctionComponent<Props> = ({ menuState, menuOpen }) => {
+interface HeaderProps {
+    menuItems: MenuProps[];
+}
+
+const Header: FunctionComponent<HeaderProps> = ({menuItems}) => {
+    console.log("items ", menuItems);
+
+    
+    
     return (
         <Wrapper>
             <LogoWrapper>
                 <Link href="/" passHref>
                     <a>
-                        <Logo />
+                        <Image src={Logo} alt='Logo Kuhn4sports'  />
                     </a>
                 </Link>
             </LogoWrapper>
-            <BurgerBtn onClick={() => menuState(!menuOpen)} open={menuOpen} />
-            <Overlay onClick={() => menuState(!menuOpen)} open={menuOpen} />
+            <MenuItemsWrapper>
+                {menuItems.reverse().map((item: MenuProps) => (
+                    <MenuItem key={item.position}>
+                        <Link passHref href={item.url === 'home' ? '/' : item.url}>
+                            <LinkInner>{item.name}</LinkInner>
+                        </Link>
+                    </MenuItem>
+                ))}
+            </MenuItemsWrapper>
         </Wrapper>
     );
 };
@@ -28,18 +44,11 @@ const Header: FunctionComponent<Props> = ({ menuState, menuOpen }) => {
 export default Header;
 
 const Wrapper = styled.header`
-    background-color: ${({ theme }) => theme.palette.primary.main};
-    position: absolute;
-    top: 0;
+    background-color: ${({ theme }) => theme.palette.background.default};
     width: 100%;
     display: grid;
     grid-template-columns: repeat(24, 1fr);
     position: relative;
-`;
-
-const Logo = styled(LogoSVG)`
-    padding-top: 20px;
-    padding-bottom: 20px;
 `;
 
 const LogoWrapper = styled.div`
@@ -54,76 +63,24 @@ const LogoWrapper = styled.div`
     }
 `;
 
-interface Btn {
-    open: boolean;
-    onClick?: () => void;
-}
+const MenuItemsWrapper = styled.div`
+    grid-column: 12 / span 12;
+    display: flex;
+    align-items: center;
+    gap: 25px;
 
-const Overlay = styled.div<Btn>`
-    position: absolute;
-    z-index: 3;
-    width: ${({ open }) => (open ? '100vw' : 0)};
-    margin-right: ${({ open }) => (open ? 0 : 'auto')};
-    height: 100vh;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: #b5b5b5;
-    opacity: ${({ open }) => (open ? 0.8 : 0)};
-    transition: all 0.8s ease-in;
-    cursor: pointer;
-`;
-
-const BurgerBtn = styled.div<Btn>`
-    grid-column: 23 / span 1;
-    width: 25px;
-    height: 15px;
-    border-top: ${({ open }) => (open ? 0 : 2)}px solid black;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    position: relative;
-    cursor: pointer;
-    transition: all 0.5s ease-in;
+    ${({ theme }) => theme.breakpoints.up('sm')} {
+        grid-column: 12 / span 12;
+    }
 
     ${({ theme }) => theme.breakpoints.up('md')} {
-        width: 50px;
-        height: 30px;
-        border-top: ${({ open }) => (open ? 0 : 4)}px solid black;
-    }
-
-    &:after,
-    &:before {
-        transition: all 0.5s ease-in;
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        background: black;
-        height: 2px;
-        margin-left: auto;
-
-        ${({ theme }) => theme.breakpoints.up('md')} {
-            height: 4px;
-        }
-    }
-
-    &:after {
-        width: ${({ open }) => (open ? '100%' : '17.5px')};
-        top: 5.5px;
-        transform: rotate(${({ open }) => (open ? 45 : 0)}deg);
-
-        ${({ theme }) => theme.breakpoints.up('md')} {
-            width: ${({ open }) => (open ? '100%' : '35px')};
-            top: 11px;
-        }
-    }
-
-    &:before {
-        bottom: 0;
-        top: 0;
-        margin-top: auto;
-        margin-bottom: ${({ open }) => (open ? 'auto' : 0)};
-        transform: rotate(${({ open }) => (open ? -45 : 0)}deg);
+        grid-column: 12 / span 12;
     }
 `;
+
+const LinkInner = styled.a`
+    text-decoration: none;
+    color: ${({theme}) => theme.palette.primary.main};
+`
+
+const MenuItem = styled.div``;

@@ -3,10 +3,10 @@ import { StoryData } from 'storyblok-js-client';
 import DynamicComponent from '../components/DynamicComponent';
 import SEO from '../components/SEO';
 import Layout from '../layout/Layout';
-import { MenuProps } from '../layout/Menu';
 import Storyblok, { useStoryblok } from '../utils/storyblok';
 import { GetServerSideProps } from 'next';
 import { getServerSideSitemap, ISitemapField } from 'next-sitemap';
+import { MenuProps } from '../layout/Header';
 
 interface Props {
     story: StoryData;
@@ -69,7 +69,7 @@ export async function getStaticProps({
     };
 
     let sbParams: Params = {
-        version: 'published', // or "published"
+        version: 'draft', // or "published"
         resolve_relations: ['featured-posts.posts', 'selected-posts.posts'],
         language: locale
     };
@@ -92,6 +92,8 @@ export async function getStaticProps({
     const popUp = getPop(stories);
     const menuItems = getMenu(stories);
     const footer = getFooter(stories);
+
+    console.log("menu ", menuItems);
 
     return {
         props: {

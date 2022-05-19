@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Head>
-                <link rel="shortcut icon" href="/favicon.ico" />
+                <link rel="shortcut icon" href="/favicon.png" />
             </Head>
             <GlobalStyles />
             <ThemeProvider theme={theme}>
