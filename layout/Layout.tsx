@@ -7,7 +7,7 @@ import CookieBot from 'react-cookiebot';
 import PopUp from './PopUp';
 
 interface Props {
-    footer: StoryData;
+    footer?: StoryData;
     menu: MenuProps[];
     popUp: any;
     children: React.ReactNode;

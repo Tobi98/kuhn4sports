@@ -15,11 +15,10 @@ export function useStoryblok(originalStory: any, preview: any, locale: any) {
     // adds the events for updating the visual editor
     // see https://www.storyblok.com/docs/guide/essentials/visual-editor#initializing-the-storyblok-js-bridge
     function initEventListeners() {
-        const { StoryblokBridge } = window as any;
+        const { StoryblokBridge, location } = window as any;
         if (typeof StoryblokBridge !== 'undefined') {
             // initialize the bridge with your token
             const storyblokInstance = new StoryblokBridge({
-                resolveRelations: ['featured-posts.posts', 'selected-posts.posts'],
                 language: locale
             });
 
@@ -37,7 +36,6 @@ export function useStoryblok(originalStory: any, preview: any, locale: any) {
                 // loading the draft version on initial enter of editor
                 Storyblok.get(`cdn/stories/${event.storyId}`, {
                     version: 'draft',
-                    resolve_relations: ['featured-posts.posts', 'selected-posts.posts'],
                     language: locale
                 })
                     .then(({ data }) => {
@@ -59,7 +57,7 @@ export function useStoryblok(originalStory: any, preview: any, locale: any) {
         const existingScript = document.getElementById('storyblokBridge');
         if (!existingScript) {
             const script = document.createElement('script');
-            script.src = '//app.storyblok.com/f/storyblok-v2-latest.js';
+            script.src = 'https://app.storyblok.com/f/storyblok-v2-latest.js';
             script.id = 'storyblokBridge';
             document.body.appendChild(script);
             script.onload = () => {
@@ -77,7 +75,7 @@ export function useStoryblok(originalStory: any, preview: any, locale: any) {
             // first load the bridge, then initialize the event listeners
             addBridge(initEventListeners);
         }
-    }, []);
+    });
 
     useEffect(() => {
         setStory(originalStory);

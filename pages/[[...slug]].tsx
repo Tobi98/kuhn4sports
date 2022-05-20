@@ -14,9 +14,9 @@ interface Props {
     locale: string;
     locales: Array<string>;
     defaultLocale: string;
-    footer: StoryData[];
+    footer?: StoryData[];
     menuItems: Array<MenuProps>;
-    popUp: StoryData[];
+    popUp?: StoryData[];
 }
 
 interface PropsStatic {
@@ -40,10 +40,11 @@ const Page: FunctionComponent<Props> = ({
 }) => {
     const enableBridge = true;
     story = useStoryblok(story, enableBridge, locale);
+    
     return (
         <>
             <SEO name={story.name} />
-            <Layout footer={footer[0]} menu={menuItems} popUp={popUp}>
+            <Layout menu={menuItems} popUp={popUp}>
                 <DynamicComponent blok={story.content} />
             </Layout>
         </>
@@ -63,14 +64,13 @@ export async function getStaticProps({
 
     type Params = {
         version: 'draft' | 'published' | undefined;
-        resolve_relations: Array<string>;
+        resolve_relations?: Array<string>;
         language: any;
         cv?: any;
     };
 
     let sbParams: Params = {
-        version: 'draft', // or "published"
-        resolve_relations: ['featured-posts.posts', 'selected-posts.posts'],
+        version: 'published', // or "published"
         language: locale
     };
 
@@ -89,11 +89,7 @@ export async function getStaticProps({
         resolve_links: 'story'
     });
 
-    const popUp = getPop(stories);
     const menuItems = getMenu(stories);
-    const footer = getFooter(stories);
-
-    console.log("menu ", menuItems);
 
     return {
         props: {
@@ -102,29 +98,11 @@ export async function getStaticProps({
             locale,
             locales,
             defaultLocale,
-            footer,
             menuItems,
-            popUp
         },
         revalidate: 600 // revalidate every 10 min
     };
 }
-
-const getPop = (stories: Array<StoryData>): StoryData[] => {
-    return stories.filter((story: StoryData) => {
-        if (story.name === 'popUp') {
-            return story;
-        }
-    });
-};
-
-const getFooter = (stories: Array<StoryData>): StoryData[] => {
-    return stories.filter((story: StoryData) => {
-        if (story.name === 'footer') {
-            return story;
-        }
-    });
-};
 
 const getMenu = (stories: Array<StoryData>): Array<MenuProps> => {
     let menu: Array<MenuProps> = [];

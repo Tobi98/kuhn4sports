@@ -15,10 +15,6 @@ interface HeaderProps {
 }
 
 const Header: FunctionComponent<HeaderProps> = ({menuItems}) => {
-    console.log("items ", menuItems);
-
-    
-    
     return (
         <Wrapper>
             <LogoWrapper>
@@ -29,7 +25,7 @@ const Header: FunctionComponent<HeaderProps> = ({menuItems}) => {
                 </Link>
             </LogoWrapper>
             <MenuItemsWrapper>
-                {menuItems.reverse().map((item: MenuProps) => (
+                {menuItems.map((item: MenuProps) => (
                     <MenuItem key={item.position}>
                         <Link passHref href={item.url === 'home' ? '/' : item.url}>
                             <LinkInner>{item.name}</LinkInner>
@@ -67,6 +63,7 @@ const MenuItemsWrapper = styled.div`
     grid-column: 12 / span 12;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 25px;
 
     ${({ theme }) => theme.breakpoints.up('sm')} {

@@ -5,7 +5,6 @@ import { createGlobalStyle, ThemeProvider as StyledThemeProvider } from 'styled-
 import { theme } from '../theme/theme';
 import '@fontsource/roboto';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
@@ -32,6 +31,6 @@ const GlobalStyles = createGlobalStyle`
     }
 
     p, h1, h2, h3, h4, h5, h6, a {
-        font-family: roboto;
+        font-family: roboto, sans-serif;
     }
 `;

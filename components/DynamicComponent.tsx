@@ -8,7 +8,6 @@ import TileImageBlock from './TileImageBlock';
 import Space from './Space';
 import HeadlineBlock from './HeadlineBlock';
 import TileBlock from './TileBlock';
-import SocialMediaBlock from './SocialMediaBlock';
 import ContactTileBlock from './ContactTileBlock';
 import Global from './Global';
 import Columns4Block from './Columns4Block';
@@ -30,7 +29,6 @@ const Components: any = {
     // space: Space,
     // headline: HeadlineBlock,
     // tile: TileBlock,
-    // socialMedia: SocialMediaBlock,
     // contactTile: ContactTileBlock,
     // global: Global,
     // columns4: Columns4Block,
