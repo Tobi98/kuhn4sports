@@ -28,7 +28,7 @@ const nextConfig = {
         return config;
     },
     env: {
-        REACT_APP_COOKIEBOT: process.env.REACT_APP_COOKIEBOT,
+        REACT_APP_COOKIEBOTID: process.env.REACT_APP_COOKIEBOTID,
         REACT_APP_STORYBLOK: process.env.REACT_APP_STORYBLOK,
     },
 };

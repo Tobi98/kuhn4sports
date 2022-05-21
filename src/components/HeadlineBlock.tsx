@@ -5,19 +5,19 @@ import styled, { css } from "styled-components";
 import { DefaultBlok } from "./DynamicComponent";
 interface Headline extends DefaultBlok {
     headline: string;
-    headlineTag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+    variant: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
 interface Props {
     blok: Headline;
 }
 
-const HeadlineBlock: FunctionComponent<Props> = ({ blok: { headline, headlineTag, _editable, _uid, component } }) => {
-    if (headlineTag === "h1") {
+const HeadlineBlock: FunctionComponent<Props> = ({ blok: { headline, variant, _editable, _uid, component } }) => {
+    if (variant === "h1") {
         return (
             <Wrapper
                 {...sbEditable({
                     headline,
-                    headlineTag,
+                    variant,
                     _editable,
                     _uid,
                     component,
@@ -27,12 +27,12 @@ const HeadlineBlock: FunctionComponent<Props> = ({ blok: { headline, headlineTag
                 <H1>{headline}</H1>
             </Wrapper>
         );
-    } else if (headlineTag === "h2") {
+    } else if (variant === "h2") {
         return (
             <Wrapper
                 {...sbEditable({
                     headline,
-                    headlineTag,
+                    variant,
                     _editable,
                     _uid,
                     component,
@@ -42,12 +42,12 @@ const HeadlineBlock: FunctionComponent<Props> = ({ blok: { headline, headlineTag
                 <H2>{headline}</H2>
             </Wrapper>
         );
-    } else if (headlineTag === "h3") {
+    } else if (variant === "h3") {
         return (
             <Wrapper
                 {...sbEditable({
                     headline,
-                    headlineTag,
+                    variant,
                     _editable,
                     _uid,
                     component,
@@ -57,12 +57,12 @@ const HeadlineBlock: FunctionComponent<Props> = ({ blok: { headline, headlineTag
                 <H3>{headline}</H3>
             </Wrapper>
         );
-    } else if (headlineTag === "h4") {
+    } else if (variant === "h4") {
         return (
             <Wrapper
                 {...sbEditable({
                     headline,
-                    headlineTag,
+                    variant,
                     _editable,
                     _uid,
                     component,
@@ -72,12 +72,12 @@ const HeadlineBlock: FunctionComponent<Props> = ({ blok: { headline, headlineTag
                 <H4>{headline}</H4>
             </Wrapper>
         );
-    } else if (headlineTag === "h5") {
+    } else if (variant === "h5") {
         return (
             <Wrapper
                 {...sbEditable({
                     headline,
-                    headlineTag,
+                    variant,
                     _editable,
                     _uid,
                     component,
@@ -87,12 +87,12 @@ const HeadlineBlock: FunctionComponent<Props> = ({ blok: { headline, headlineTag
                 <H5>{headline}</H5>
             </Wrapper>
         );
-    } else if (headlineTag === "h6") {
+    } else if (variant === "h6") {
         return (
             <Wrapper
                 {...sbEditable({
                     headline,
-                    headlineTag,
+                    variant,
                     _editable,
                     _uid,
                     component,
@@ -108,7 +108,7 @@ const HeadlineBlock: FunctionComponent<Props> = ({ blok: { headline, headlineTag
         <Wrapper
             {...sbEditable({
                 headline,
-                headlineTag,
+                variant,
                 _editable,
                 _uid,
                 component,

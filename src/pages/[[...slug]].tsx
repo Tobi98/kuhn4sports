@@ -13,7 +13,7 @@ interface Props {
     locale: string;
     locales: Array<string>;
     defaultLocale: string;
-    footer?: StoryData[];
+    footer: StoryData[];
     menuItems: Array<MenuProps>;
     popUp?: StoryData[];
 }
@@ -34,7 +34,7 @@ const Page: FunctionComponent<Props> = ({ story, preview, locale, locales, defau
     return (
         <>
             <SEO name={story.name} />
-            <Layout menu={menuItems} popUp={popUp}>
+            <Layout menu={menuItems} popUp={popUp} footer={footer[0]}>
                 <DynamicComponent blok={story.content} />
             </Layout>
         </>
@@ -74,6 +74,7 @@ export async function getStaticProps({ locale, locales, defaultLocale, params, p
     });
 
     const menuItems = getMenu(stories);
+    const footer = getFooter(stories);
 
     return {
         props: {
@@ -83,6 +84,7 @@ export async function getStaticProps({ locale, locales, defaultLocale, params, p
             locales,
             defaultLocale,
             menuItems,
+            footer,
         },
         revalidate: 600, // revalidate every 10 min
     };
@@ -99,6 +101,16 @@ const getMenu = (stories: Array<StoryData>): Array<MenuProps> => {
     });
 
     return menu;
+};
+
+const getFooter = (stories: Array<StoryData>): StoryData[] => {
+    return stories.filter((story: StoryData) => {
+        console.log("Story ", story);
+
+        if (story.name === "Footer") {
+            return story;
+        }
+    });
 };
 
 export async function getStaticPaths({ locales }: { locales: Array<string> }) {

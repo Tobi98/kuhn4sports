@@ -9,11 +9,9 @@ interface Props {
 }
 
 const Footer: FunctionComponent<Props> = ({ footer }) => {
-    return (
-        <Wrapper>
-            <DynamicComponent blok={footer.content} />
-        </Wrapper>
-    );
+    console.log("Fo ", footer);
+
+    return <Wrapper>{footer && <DynamicComponent blok={footer.content} />}</Wrapper>;
 };
 
 export default Footer;

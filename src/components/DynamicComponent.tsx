@@ -1,29 +1,23 @@
 import React, { FunctionComponent } from "react";
 import { StoryData } from "storyblok-js-client";
 
+import Grid from "./Grid";
+import HeadlineBlock from "./HeadlineBlock";
+import ImageBlock from "./ImageBlock";
+import LinkBlock from "./LinkBlock";
 import Page from "./Page";
 import Placeholder from "./Placeholder";
 import Teaser from "./Teaser";
+import TextBlock from "./TextBlock";
 
 const Components: any = {
     teaser: Teaser,
-    // grid: Grid,
-    // tileImage: TileImageBlock,
+    grid: Grid,
     page: Page,
-    // space: Space,
-    // headline: HeadlineBlock,
-    // tile: TileBlock,
-    // contactTile: ContactTileBlock,
-    // global: Global,
-    // columns4: Columns4Block,
-    // logo: LogoBlock,
-    // text: TextBlock,
-    // links: LinksBlock,
-    // link: LinkBlock,
-    // imageLink: ImageLinkBlock,
-    // columns: ColumnsBlock,
-    // imageButton: ImageButtonBlock,
-    // image: ImageBlock
+    headline: HeadlineBlock,
+    text: TextBlock,
+    link: LinkBlock,
+    image: ImageBlock,
 };
 
 export interface DefaultBlok {
